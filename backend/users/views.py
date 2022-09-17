@@ -6,15 +6,15 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.pagination import CustomPagination
+from api.pagination import SubscribeUserPagination
 from api.serializers import FollowSerializer
 from users.models import Follow
 
 User = get_user_model()
 
 
-class CustomUserViewSet(UserViewSet):
-    pagination_class = CustomPagination
+class SubscribeUserViewSet(UserViewSet):
+    pagination_class = SubscribeUserPagination
 
     @action(
         detail=True,
