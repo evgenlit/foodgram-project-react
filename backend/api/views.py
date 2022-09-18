@@ -1,3 +1,10 @@
+from api.filters import AuthorAndTagFilter, IngredientSearchFilter
+from api.models import (Cart, Favorite, Ingredient, IngredientAmount, Recipe,
+                        Tag)
+from api.pagination import SubscribeUserPagination
+from api.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
+from api.serializers import (CropRecipeSerializer, IngredientSerializer,
+                             RecipeSerializer, TagSerializer)
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
@@ -5,24 +12,6 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
-
-from api.filters import AuthorAndTagFilter, IngredientSearchFilter
-from api.models import (
-    Cart,
-    Favorite,
-    Ingredient,
-    IngredientAmount,
-    Recipe,
-    Tag
-)
-from api.pagination import CustomPagination
-from api.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
-from api.serializers import (
-    CropRecipeSerializer,
-    IngredientSerializer,
-    RecipeSerializer,
-    TagSerializer
-)
 
 
 class TagsViewSet(ReadOnlyModelViewSet):
@@ -42,7 +31,7 @@ class IngredientsViewSet(ReadOnlyModelViewSet):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    pagination_class = CustomPagination
+    pagination_class = SubscribeUserPagination
     filter_class = AuthorAndTagFilter
     permission_classes = [IsOwnerOrReadOnly]
 
@@ -106,7 +95,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 f'{list[item]["measurement_unit"]} \n'
             )
         response = HttpResponse(shopping_list, 'Content-Type: text/plain')
-        response['Content-Disposition'] = 'attachment; filename="shopping_list.txt"'
+        response['Content-Disposition'] = ('attachment; '
+                                           'filename="shopping_list.txt"')
 
         return response
 
