@@ -51,8 +51,8 @@ sudo apt install docker.io
 ```
 sudo apt install docker-compose
 ```
-Скопируйте файлы `docker-compose.yaml` и `nginx/default.conf` из локального проекта  
-на сервер в `/home/<ваш_username>/docker-compose.yaml` и `/home/<ваш_username>/nginx/default.conf` соответственно
+Скопируйте файлы `docker-compose.yaml` и `nginx.conf` из локального проекта  
+на сервер в `/home/<ваш_username>/docker-compose.yaml` и `/home/<ваш_username>/nginx.conf` соответственно
 ```
 scp ./<FILENAME> <USER>@<HOST>:/home/<USER>/
 ```
