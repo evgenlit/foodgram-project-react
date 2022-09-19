@@ -7,21 +7,6 @@
 * http://51.250.107.17/admin - админ панель
 * http://51.250.107.17/api/redoc/ - redoc  
 
-Тестовые пользователи:  
-```
-admin
-gfhjkmlkzhenf
-
-test1@mail.ru
-!QAZ2wsx#EDC
-
-test2@mail.ru
-@WSX3edc$RFV
-
-test3@mail.ru
-#EDC4rfv%TGB
-```
-
 Для проекта настроено `Continuous Integration и Continuous Deployment`  
 При пуше в ветку `master` отрабатывают сценарии:
 1. Проверка кода на соответствие стандарту PEP8
