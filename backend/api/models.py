@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
-from django.forms import RegexField
 from django.db import models
 
 User = get_user_model()
@@ -12,10 +11,16 @@ class Tag(models.Model):
         max_length=200,
         unique=True
     )
-    color = RegexField(
-        regex=r'#[a-f0-9]{6}\b',
+    color = models.CharField(
         verbose_name='Цвет(в HEX)',
-        max_length=7
+        max_length=7,
+        validators=[
+            validators.RegexValidator(
+                regex='#[a-f0-9]{6}\b',
+                message='Укажите значение в HEX формате',
+                code='invalid_color'
+            ),
+        ]
     )
     slug = models.SlugField(
         verbose_name='Slug',
