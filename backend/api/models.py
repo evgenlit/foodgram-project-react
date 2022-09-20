@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
+from django.forms import RegexField
 from django.db import models
 
 User = get_user_model()
@@ -11,7 +12,8 @@ class Tag(models.Model):
         max_length=200,
         unique=True
     )
-    color = models.CharField(
+    color = RegexField(
+        regex=r'#[a-f0-9]{6}\b',
         verbose_name='Цвет(в HEX)',
         max_length=7
     )
