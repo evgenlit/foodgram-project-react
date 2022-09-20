@@ -16,7 +16,7 @@ class Tag(models.Model):
         max_length=7,
         validators=[
             validators.RegexValidator(
-                regex='#[a-f0-9]{6}\b',
+                regex="#[A-Fa-f0-9]{6}",
                 message='Укажите значение в HEX формате',
                 code='invalid_color'
             ),
